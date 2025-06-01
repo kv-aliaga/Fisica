@@ -14,8 +14,8 @@ Um programa simples que calcula os parâmetros de um objeto em queda livre com b
 ## Como Usar
 
 1. Certifique-se de ter o Java JDK instalado (versão 17 ou superior recomendada)
-2. Compile o programa: `javac Trabalho.java`
-3. Execute o programa: `java Trabalho`
+2. Compile o programa: `javac Fisica.java`
+3. Execute o programa: `java Fisica`
 4. Siga as instruções no terminal:
    - Digite a altura inicial em metros
    - Digite o tempo de queda em segundos
