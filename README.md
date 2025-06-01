@@ -35,8 +35,10 @@ Onde:
 ## Personalização
 
 Você pode modificar as cores da saída alterando as constantes:
-- `AZUL` para resultados
-- `VERMELHO` para títulos
+- `AZUL` para resultados finais
+- `VERMELHO` para erros
+- `AMARELO` para inputs
+- `PRETO` e `BRANCO_BACKGROUND` para títulos
 - `RESET` para voltar à cor padrão
 
 ## Licença
