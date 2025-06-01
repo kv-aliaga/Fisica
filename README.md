@@ -45,4 +45,4 @@ Você pode modificar as cores da saída alterando as constantes:
 
 Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
-em memória de Lucas Kluska
+<p align="right"><strong>em memória de Lucas Kluska</strong></p>
