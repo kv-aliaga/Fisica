@@ -2,27 +2,25 @@ import * as fisica from "./functions.js";
 
 //variáveis
 const form = $();
+const fields = {
+    'v0': $(),
+    'vf': $(),
+    'h0': $(),
+    'hf': $(),
+    'delta_h': $(),
+    't': $(),
+    'g': $(),
+}
 
 function main() {
     //variáveis
-    const input_fields = {
-        'v0': $(),
-        'vf': $(),
-        'h0': $(),
-        'hf': $(),
-        'delta_h': $(),
-        't': $(),
-        'g': $(),
-    }
-
-    const values = Object.fromEntries(
-        Object.keys(input_fields).map(chave => [
-            chave, input_fields[chave].val().trim()
-        ])
-    );
-
     let empty_field;
     let output_value;
+    const values = Object.fromEntries(
+        Object.keys(fields).map(chave => [
+            chave, fields[chave].val().trim()
+        ])
+    );
 
     //processamento
     for (const [key, value] of Object.entries(values)) {
@@ -65,10 +63,10 @@ function main() {
     }
 
     //saída
-    empty_field.text(output_value);
+    fields[empty_field].text(output_value);
 }
 
-$(form).on('submit', function(e) {
+$(form).on('submit', function (e) {
     e.preventDefault();
     main();
 });
