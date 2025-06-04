@@ -14,7 +14,7 @@ body {
 }
 
 header {
-    background-color: #1eff00;
+    background-color: greenyellow;
     color: white;
     padding: 25px;
     text-align: center;
@@ -85,6 +85,9 @@ button:hover {
 }
 
 footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     background: greenyellow;
     text-align: center;
     padding: 1rem;
