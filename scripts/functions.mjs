@@ -10,8 +10,8 @@ export function calc_delta_h(h0, hf) {
     return Math.abs(hf - h0);
 }
 
-export function calc_g(h, t) {
-    return 2 * h / Math.pow(t, 2);
+export function calc_g(delta_h, v0, t) {
+    return 2 * (delta_h - v0 * t) / Math.pow(t, 2);
 }
 
 export function calc_t(vf, g) {
@@ -22,6 +22,6 @@ export function calc_v0(delta_h, g, t) {
     return (delta_h - 0.5 * g * Math.pow(t, 2)) / t;
 }
 
-export function calc_vf(v0, g, h) {
-    return Math.sqrt(Math.pow(v0, 2) + 2 * g * h);
+export function calc_vf(v0, g, delta_h) {
+    return Math.sqrt(Math.pow(v0, 2) + 2 * g * delta_h);
 }
