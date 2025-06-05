@@ -1,19 +1,42 @@
-body {
+html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
+    background-color: #d6ffd4;
     color: black;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
     background-color: #1eff00;
     color: white;
-    padding: 25px;
     text-align: center;
+    padding: 15px;
+    border-bottom: 2px solid #0ccf00;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+a {
+    color: blueviolet;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: rgb(91, 30, 147);
+    text-decoration: underline;
 }
 
 main {
@@ -25,54 +48,63 @@ main {
 }
 
 section {
-    background: white;
-    padding: 40px;
+    background: #eaffea;
+    padding: 30px;
     border-radius: 15px;
     width: 100%;
     max-width: 400px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 label {
     display: block;
     margin-bottom: 5px;
+    font-weight: 600;
 }
 
-input, select{
-    align-items: center;
+input, select {
     width: 95%;
     padding: 0.6rem;
-    border: 1px solid black;
+    border: 2px solid white;
     border-radius: 8px;
-    transition: border-color 0.3s ease;
-    margin-right: 15px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 15px;
+    background-color: white;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
+
+input::placeholder {
+    color: grey;
+    font-style: italic;
+}
+
 
 #incognita, #g{
     width: 100%;
 }
 
-input:focus,
-select:focus {
+input:hover, select:hover {
     outline: none;
-    border-color: green;
+    border: 2px solid transparent;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px linear-gradient(to right, #218838, #7ee696);
+    background-clip: padding-box;
+    animation: gradient-border 0.3s ease infinite alternate;
 }
 
-button {
-    width: 100%;
-    padding: 0.8rem;
-    border: none;
-    border-radius: 8px;
-    background-color: rgb(139, 209, 32);
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 1rem;
+@keyframes gradient-border {
+    from {
+        box-shadow: 0 0 0 2px white, 0 0 0 4px #218838;
+    }
+    to {
+        box-shadow: 0 0 0 2px white, 0 0 0 4px #7bd991;
+    }
 }
 
-button:hover {
-    background-color: green;
+button:active {
+    transform: scale(0.97);
+    filter: brightness(0.95);
 }
+
 
 #resultado {
     margin-top: 1.5rem;
@@ -81,23 +113,51 @@ button:hover {
     color: green;
 }
 
-section{
-    padding: 15px;
-    background-color: #1eff00;
-    border-radius: 10px;
-}
-
-#alturaInicial, #alturaFinal, #velocidadeInicial, #velocidadeFinal, #variacao, #aceleracao, #tempo{
-    padding: 5px;
-}
-
 footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
     background: #1eff00;
     text-align: center;
     padding: 1rem;
     font-size: 0.9rem;
-    color: black;
+    color: white;
+    margin-top: auto;
+    border-top: 2px solid #0ccf00;
+    font-size: 15px;
+}
+
+@keyframes degradêAnimado {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+button:hover{
+    color: white;
+    text-align: center;
+    padding: 1.2rem;
+    font-size: 1.1rem;
+    background: linear-gradient(270deg, #1eff00, #00c896, #5e00c8);
+    background-size: 600% 600%;
+    animation: degradêAnimado 3s ease infinite;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    width: 100%;
+    padding: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(to right, #28a745, #218838);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 3s ease;
+    margin-top: 1rem;
+    background-size: 600% 600%;
 }
