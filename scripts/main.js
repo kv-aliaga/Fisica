@@ -84,7 +84,7 @@ submit.on('click', function () {
     const x_field = x_selector.val();
     const result = main(x_field);
 
-    if (result !== false) {
+    if (result) {
         localStorage.setItem('result', result);
         window.location.assign('resultado.html');
     } else {
