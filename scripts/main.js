@@ -82,19 +82,21 @@ $(document).ready(function() {
 
 submit.on('click', function () {
     const x_field = x_selector.val();
-    const args = check_fields(x_field);
+    const result = main(x_field);
 
-    if (args) {
-        alert('funcionou');
+    if (result) {
+        localStorage.setItem('result', result);
+        window.location.assign('resultado.html');
     } else {
-        alert('falhou');
+        alert('Não deixe nenhum campo vazio!');
     }
 });
 
 x_selector.on('change', function() {
-   x_field = x_selector.val();
+   const x_field = x_selector.val();
    for (let [key, value] of Object.entries(fields)) {
        const parentDiv = value.closest('div');
+       value.val('');
        if (needed_fields[x_field].includes(key)) {
            parentDiv.show();
        } else {
