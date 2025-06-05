@@ -93,7 +93,7 @@ submit.on('click', function () {
 });
 
 x_selector.on('change', function() {
-   x_field = x_selector.val();
+   const x_field = x_selector.val();
    for (let [key, value] of Object.entries(fields)) {
        const parentDiv = value.closest('div');
        value.val('');
