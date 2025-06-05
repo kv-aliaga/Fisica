@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <script src="libs/jquery.min.js"></script>
+    <script src="scripts/main.js" defer></script>
     <title>Calculadora</title>
 </head>
 
@@ -13,65 +15,63 @@
     </header>
 
     <main>
-
         <section>
             <div id="variaveis">
                 <label for="incognita">Selecione o valor a ser calculado: </label>
 
                 <select id="incognita">
                     <option value="">Selecione</option>
-                    <option value="alturaInicial">Altura Inicial (m)</option> a
-                    <option value="alturaFinal">Altura Final (m)</option> a
-                    <option value="velocidadeInicial">Velocidade Inicial (s)</option>
-                    <option value="velocidadeFinal">Velocidade Final (s)</option>
-                    <option value="variacao">Variação (m)</option>
-                    <option value="gravidade">Aceleração da Gravidade (m/s²)</option>
-                    <option value="tempo">Tempo (s)</option>
+                    <option value="h0">Altura Inicial [h0] (m)</option> a
+                    <option value="hf">Altura Final [hf] (m)</option> a
+                    <option value="v0">Velocidade Inicial [v0] (s)</option>
+                    <option value="vf">Velocidade Final [vf] (s)</option>
+                    <option value="delta_h">Variação de Altura [&Delta;h] (m)</option>
+                    <option value="g">Aceleração da Gravidade [g] (m/s²)</option>
+                    <option value="t">Tempo [t] (s)</option>
                 </select>
             </div>
 
             <div id="perguntas">
                 <div id="alturaInicial">
-                    <label for="alturaInicial">Altura Inicial (m):</label>
-                        <input type="number">
+                    <label for="h0">Altura Inicial [h0] (m):</label>
+                    <input id="h0" type="number">
                 </div>
 
                 <div id="alturaFinal">
-                    <label for="alturaFinal">Altura Final (m):</label>
-                        <input type="number">
+                    <label for="hf">Altura Final [hf] (m):</label>
+                    <input id="hf" type="number">
                 </div>
 
                 <div id="velocidadeInicial">
-                    <label for="velociodadeInicial">Velocidade Inicial (s):</label>
-                        <input type="number">
+                    <label for="v0">Velocidade Inicial [v0] (s):</label>
+                    <input id="v0" type="number">
                 </div>
 
                 <div id="velocidadeFinal">
-                    <label for="alturaFinal">Velocidade Final (s):</label>
-                        <input type="number">
+                    <label for="vf">Velocidade Final [vf] (s):</label>
+                    <input id="vf" type="number">
                 </div>
 
                 <div id="variacao">
-                    <label for="variacao">Variação (m):</label>
-                        <input type="number">
+                    <label for="delta_h">Variação [&Delta;h] (m):</label>
+                    <input id="delta_h" type="number">
                 </div>
 
                 <div id="aceleracao">
-                    <label for="aceleracao">Aceleração da Gravidade (m/s²):</label>
-                        <input type="number">
+                    <label for="g">Aceleração da Gravidade [g] (m/s²):</label>
+                    <input id="g" type="number">
                 </div>
 
                 <div id="tempo">
-                    <label for="tempo">Tempo (s):</label>
-                        <input type="number">
+                    <label for="t">Tempo [t] (s):</label>
+                    <input id="t" type="number">
                 </div>
 
-                <button type="submit">Calcular</button>
+                <button id="calcular">Calcular</button>
 
                 <h3 id="resultado"></h3>
             </div>
         </section>
-
     </main>
 
     <footer>
