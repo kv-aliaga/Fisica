@@ -2,8 +2,8 @@ export function calc_hf(h0, g, t) {
     return h0 - 0.5 * g * Math.pow(t, 2);
 }
 
-export function calc_v(g, t) {
-    return g * t;
+export function calc_h0(v0, t, g) {
+    return v0 * t + 0.5 * g * Math.pow(t, 2);
 }
 
 export function calc_delta_h(h0, hf) {
