@@ -10,23 +10,30 @@ const fields = {
     'delta_h': $(),
     't': $(),
     'g': $(),
+    'calc':$(),
 }
 
-function main() {
-    //variáveis
-    let empty_field;
-    let output_value;
-    const values = Object.fromEntries(
+const necessary_fields = {
+
+}
+
+//funções
+function get_values() {
+    return Object.fromEntries(
         Object.keys(fields).map(chave => [
             chave, fields[chave].val().trim()
         ])
     );
+}
+
+function main(empty_field) {
+    //variáveis
+    let output_value;
+    const values = get_values();
 
     //processamento
     for (const [key, value] of Object.entries(values)) {
-        if (value === "") {
-            empty_field = key;
-        } else {
+        if (value !== "") {
             values[key] = Number(value);
         }
     }
@@ -66,7 +73,25 @@ function main() {
     fields[empty_field].text(output_value);
 }
 
+function verify_entry(needed) {
+    const values = get_values();
+    let cont = 0;
+    for (const key in needed) {
+        if (values[key] === "") {
+            cont++;
+        }
+    }
+    return cont === 1;
+}
+
+//event listeners
 $(form).on('submit', function (e) {
     e.preventDefault();
-    main();
+    let val = fields.calc.val();
+
+    if (verify_entry()) {
+        main();
+    } else {
+        alert("Deixe apenas 1 campo vazio");
+    }
 });
