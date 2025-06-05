@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
     <script src="libs/jquery.min.js"></script>
     <script src="scripts/main.js" defer></script>
     <title>Calculadora</title>
@@ -21,8 +21,8 @@
 
                 <select id="incognita">
                     <option value="">Selecione</option>
-                    <option value="h0">Altura Inicial [h0] (m)</option> a
-                    <option value="hf">Altura Final [hf] (m)</option> a
+                    <option value="h0">Altura Inicial [h0] (m)</option>
+                    <option value="hf">Altura Final [hf] (m)</option>
                     <option value="v0">Velocidade Inicial [v0] (s)</option>
                     <option value="vf">Velocidade Final [vf] (s)</option>
                     <option value="delta_h">Variação de Altura [&Delta;h] (m)</option>
@@ -59,8 +59,17 @@
 
                 <div id="aceleracao">
                     <label for="g">Aceleração da Gravidade [g] (m/s²):</label>
-                    <input id="g" type="number">
+
+                    <select id="g">
+                        <option value=""></option>
+                        <option value="10">10 m/s²</option>
+                        <option value="9.8">9,8 m/s²</option>
+                        <option value="9.81">9,81 m/s²</option>
+                        <option value="9.80665">9,80665 m/s²</option>
+                    </select>
                 </div>
+
+                
 
                 <div id="tempo">
                     <label for="t">Tempo [t] (s):</label>
@@ -75,9 +84,7 @@
     </main>
 
     <footer>
-        <strong>Kluska - Aliaga &reg; Todos os direitos reservados.</strong>
+        <strong>Kluska - Aliaga - GPT &reg; Todos os direitos reservados.</strong>
     </footer>
 </body>
-
-
 </html>
