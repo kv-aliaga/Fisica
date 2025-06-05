@@ -47,7 +47,7 @@ input, select{
     margin-right: 15px;
 }
 
-#incognita{
+#incognita, #g{
     width: 100%;
 }
 
@@ -92,6 +92,9 @@ section{
 }
 
 footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     background: #1eff00;
     text-align: center;
     padding: 1rem;
