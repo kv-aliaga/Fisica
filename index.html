@@ -13,16 +13,45 @@
     </header>
 
     <main>
+
         <section>
-            <div>
-                Adicionado aqui a calculadora
+            <div id="perguntas">
+                <label for="incognita">Selecione o valor a ser calculado: </label>
+
+                <select id="incognita">
+                    <option value="">Selecione</option>
+                    <option value="altura">Altura (h)</option>
+                    <option value="velocidade">Velocidade (v)</option>
+                    <option value="tempo">Tempo (t)</option>
+                </select>
             </div>
+
+            <div id="altura">
+                <label for="altura">Altura (m):</label>
+                    <input type="number">
+            </div>
+
+            <div id="velocidade">
+                <label for="velocidade">Velocidade (m/s):</label>
+                    <input type="number">
+            </div>
+
+            <div id="tempo">
+                <label for="tempo">Tempo (s):</label>
+                    <input type="number">
+            </div>
+
+            <button type="submit">Calcular</button>
+
+            <h3 id="resultado"></h3>
         </section>
+
     </main>
 
     <footer>
         <strong>Kluska - Aliaga &reg; Todos os direitos reservados.</strong>
     </footer>
 </body>
+
 
 </html>
