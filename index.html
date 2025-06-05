@@ -15,35 +15,61 @@
     <main>
 
         <section>
-            <div id="perguntas">
+            <div id="variaveis">
                 <label for="incognita">Selecione o valor a ser calculado: </label>
 
                 <select id="incognita">
                     <option value="">Selecione</option>
-                    <option value="altura">Altura (h)</option>
-                    <option value="velocidade">Velocidade (v)</option>
-                    <option value="tempo">Tempo (t)</option>
+                    <option value="alturaInicial">Altura Inicial (m)</option> a
+                    <option value="alturaFinal">Altura Final (m)</option> a
+                    <option value="velocidadeInicial">Velocidade Inicial (s)</option>
+                    <option value="velocidadeFinal">Velocidade Final (s)</option>
+                    <option value="variacao">Variação (m)</option>
+                    <option value="gravidade">Aceleração da Gravidade (m/s²)</option>
+                    <option value="tempo">Tempo (s)</option>
                 </select>
             </div>
 
-            <div id="altura">
-                <label for="altura">Altura (m):</label>
-                    <input type="number">
+            <div id="perguntas">
+                <div id="alturaInicial">
+                    <label for="alturaInicial">Altura Inicial (m):</label>
+                        <input type="number">
+                </div>
+
+                <div id="alturaFinal">
+                    <label for="alturaFinal">Altura Final (m):</label>
+                        <input type="number">
+                </div>
+
+                <div id="velocidadeInicial">
+                    <label for="velociodadeInicial">Velocidade Inicial (s):</label>
+                        <input type="number">
+                </div>
+
+                <div id="velocidadeFinal">
+                    <label for="alturaFinal">Velocidade Final (s):</label>
+                        <input type="number">
+                </div>
+
+                <div id="variacao">
+                    <label for="variacao">Variação (m):</label>
+                        <input type="number">
+                </div>
+
+                <div id="aceleracao">
+                    <label for="aceleracao">Aceleração da Gravidade (m/s²):</label>
+                        <input type="number">
+                </div>
+
+                <div id="tempo">
+                    <label for="tempo">Tempo (s):</label>
+                        <input type="number">
+                </div>
+
+                <button type="submit">Calcular</button>
+
+                <h3 id="resultado"></h3>
             </div>
-
-            <div id="velocidade">
-                <label for="velocidade">Velocidade (m/s):</label>
-                    <input type="number">
-            </div>
-
-            <div id="tempo">
-                <label for="tempo">Tempo (s):</label>
-                    <input type="number">
-            </div>
-
-            <button type="submit">Calcular</button>
-
-            <h3 id="resultado"></h3>
         </section>
 
     </main>
