@@ -34,6 +34,14 @@ a {
     transition: color 0.3s;
 }
 
+#voltar{
+    color: black;
+}
+
+#voltar:hover{
+    color: #666;
+}
+
 a:hover {
     color: #b5b5b5;
     text-decoration: underline;
