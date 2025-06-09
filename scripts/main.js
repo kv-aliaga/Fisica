@@ -20,6 +20,24 @@ const needed_fields = {
     't': ['vf', 'g'],
 };
 const funcs = Object.fromEntries(Object.keys(fields).map(k => [k, window[`calc_${k}`]]));
+const unidades = {
+    'g': 'm/s\u00b2',
+    'v0': 'm/s',
+    'vf': 'm/s',
+    'h0': 'm',
+    'hf': 'm',
+    'delta_h': 'm',
+    't': 's',
+}
+const grandezas = {
+    'g': 'g',
+    'v0': 'v0',
+    'vf': 'vf',
+    'h0': 'h0',
+    'hf': 'hf',
+    'delta_h': '\u0394h',
+    't': 't',
+}
 
 //funções
 function calc_hf(h0, g, t) {
@@ -74,10 +92,10 @@ function main(x_field) {
 }
 
 //event listeners
-$(document).ready(function() {
-   for (let field of Object.values(fields)) {
-       field.closest('div').hide();
-   }
+$(document).ready(function () {
+    for (let field of Object.values(fields)) {
+        field.closest('div').hide();
+    }
 });
 
 submit.on('click', function () {
@@ -86,21 +104,23 @@ submit.on('click', function () {
 
     if (result) {
         localStorage.setItem('result', result);
+        localStorage.setItem('unidade', unidades[x_field]);
+        localStorage.setItem('grand', grandezas[x_field]);
         window.location.assign('resultado.html');
     } else {
         alert('Não deixe nenhum campo vazio!');
     }
 });
 
-x_selector.on('change', function() {
-   const x_field = x_selector.val();
-   for (let [key, value] of Object.entries(fields)) {
-       const parentDiv = value.closest('div');
-       value.val('');
-       if (needed_fields[x_field].includes(key)) {
-           parentDiv.show();
-       } else {
-           parentDiv.hide();
-       }
-   }
+x_selector.on('change', function () {
+    const x_field = x_selector.val();
+    for (let [key, value] of Object.entries(fields)) {
+        const parentDiv = value.closest('div');
+        value.val('');
+        if (needed_fields[x_field].includes(key)) {
+            parentDiv.show();
+        } else {
+            parentDiv.hide();
+        }
+    }
 });
