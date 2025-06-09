@@ -1,28 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <script src="libs/jquery.min.js"></script>
-    <script src="scripts/resultado.js" defer></script>
-    <title>Calculadora</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resultado - Calculadora de Queda Livre</title>
+    <link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
     <header>
         <h1>Calculadora de Queda Livre</h1>
+        <nav aria-label="Navegação principal">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="https://www.todamateria.com.br/queda-livre/" target="_blank" rel="noopener noreferrer">Saiba Mais</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
-        <section>
-            <h2>Resultado: </h2>
-            <b id="resultado"></b>
+        <section aria-labelledby="titulo-resultado">
+            <h2 id="titulo-resultado">Resultado</h2>
+
+            <div id="resultado">
+                <p><em>resultado</em></p>
+            </div>
+
+            <hr>
+
+            <h3>Como funciona a queda livre?</h3>
+            <p>A queda livre é o movimento de um corpo sob a ação exclusiva da gravidade, desprezando a resistência do ar. Esse tipo de movimento ocorre, por exemplo, quando soltamos um objeto do alto de um prédio.</p>
+
+            <h3>Dicas:</h3>
+            <ul>
+                <li>Use valores realistas (ex: g = 9.8 m/s² na Terra).</li>
+                <li>Evite deixar campos em branco para evitar erros.</li>
+                <li>Revise os dados antes de calcular novamente.</li>
+            </ul>
+
+            <p ><a id="voltar" href="index.html">Voltar para o cálculo</a></p>
         </section>
     </main>
 
     <footer>
-        <strong>Kluska - Aliaga - GPT &reg; Todos os direitos reservados.</strong>
+        <p><strong>Kluska - Aliaga - GPT &reg;</strong> &mdash; Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>
