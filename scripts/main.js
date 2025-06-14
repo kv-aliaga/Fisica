@@ -41,11 +41,12 @@ const grandezas = {
 
 //funções
 function calc_hf(h0, g, t) {
-    return h0 - 0.5 * g * Math.pow(t, 2);
+    return h0 - 0.5 * g * t * t;
 }
 
 function calc_h0(v0, t, g) {
-    return v0 * t + 0.5 * g * Math.pow(t, 2);
+    return v0 * t - 0.5 * g * t * t;
+    // h0 = h - v0*t + 0.5*g*t*t
 }
 
 function calc_delta_h(h0, hf) {
@@ -61,7 +62,7 @@ function calc_t(vf, g) {
 }
 
 function calc_v0(delta_h, g, t) {
-    return (delta_h - 0.5 * g * Math.pow(t, 2)) / t;
+    return (g * t * t - 2 * delta_h) / -2 * t;
 }
 
 function calc_vf(v0, g, delta_h) {
