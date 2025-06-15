@@ -17,7 +17,7 @@ const needed_fields = {
     'hf': ['h0', 'g', 't'],
     'h0': ['v0', 'g', 't'],
     'vf': ['v0', 'g'],
-    't': ['vf', 'g'],
+    't': ['h0', 'v0', 'g'],
 };
 const funcs = Object.fromEntries(Object.keys(fields).map(k => [k, window[`calc_${k}`]]));
 const unidades = {
@@ -57,8 +57,26 @@ function calc_g(delta_h, v0, t) {
     return 2 * (delta_h - v0 * t) / Math.pow(t, 2);
 }
 
-function calc_t(vf, g) {
-    return vf / g;
+function calc_t(h0, v0, g) {
+    const a = -0.5 * g;
+    const b = v0;
+    const c = h0;
+    let delta;
+    let t;
+
+    //usando bhaskara para descobrir t
+    delta = b * b - 4 * a * c;
+    if (delta < 0) {
+        return "Nenhuma solução encontrada, \u0394 < 0";
+    } else if (delta === 0) {
+        t = -b / 2 * a;
+    } else {
+        let t1, t2;
+        t1 = (-b + Math.sqrt(delta)) / 2*a;
+        t2 = (-b - Math.sqrt(delta)) / 2*a;
+        t = Math.max(t1, t2);
+    }
+    return t >= 0 ? t : "Nenhuma solução com t >= 0 encontrada";
 }
 
 function calc_v0(delta_h, g, t) {
