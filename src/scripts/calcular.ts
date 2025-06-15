@@ -13,7 +13,7 @@ function esconderTudo(): void {
 
 const toChar: (x: number) => string = x => x.toLocaleString('pt-BR', {
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 2,
 });
 
 function calcT(h0: number, hf: number, v0: number, g: number): void {
@@ -40,7 +40,7 @@ function calcT(h0: number, hf: number, v0: number, g: number): void {
     }
 
     resultado = toChar(t);
-    localStorage.setItem('result', t >= 0 ? 'Nenhum resultado fisicamente possível' : `t = ${resultado}s`);
+    localStorage.setItem('result', t < 0 ? 'Nenhum resultado fisicamente possível' : `t = ${resultado}s`);
 }
 
 function calcVf(v0: number, g: number, t: number): void {
@@ -50,7 +50,7 @@ function calcVf(v0: number, g: number, t: number): void {
 
 function calcV0(h0: number, hf: number, g: number, t: number): void {
     const v0: number = (hf - h0 + 0.5 * g * t * t) / t;
-    localStorage.setItem('result', `v<sub>i</sub> = ${toChar(v0)}m/s`);
+    localStorage.setItem('result', `v<sub>0</sub> = ${toChar(v0)}m/s`);
 }
 
 function calcHf(h0: number, v0: number, g: number, t: number): void {
@@ -60,7 +60,7 @@ function calcHf(h0: number, v0: number, g: number, t: number): void {
 
 function calcH0(hf: number, v0: number, g: number, t: number): void {
     const h0: number = hf - v0 * t + 0.5 * g * t * t;
-    localStorage.setItem('result', `h<sub>i</sub> = ${toChar(h0)}m`);
+    localStorage.setItem('result', `h<sub>0</sub> = ${toChar(h0)}m`);
 }
 
 function calcDh(v0: number, g: number, t: number): void {
@@ -96,7 +96,7 @@ const functions: { [key: string]: Funcao } = {
     g: calcG,
 };
 
-const needed_arguments = new Map<Funcao, string[]>([
+const neededArguments = new Map<Funcao, string[]>([
     [calcT, ['h0', 'hf', 'v0', 'g']],
     [calcVf, ['v0', 'g', 't']],
     [calcV0, ['h0', 'hf', 'g', 't']],
@@ -119,19 +119,21 @@ localStorage.removeItem('result');
 esconderTudo();
 
 //event listeners
-let x_field: string;
+let xField: string;
+
 $('#incognita').on('change', function (): void {
-    x_field = $(this).val() as string;
-    if (x_field === '') {
+    xField = $(this).val() as string;
+    if (xField === '') {
         esconderTudo();
         return;
     }
     calcButton.show();
 
+    $(this).find('input, select').val(null);
+
     $('#perguntas').children().each(function (): void {
         const id: string = $(this).find('input, select').attr('id');
-        $(this).find('input, select').val(null);
-        if (needed_arguments.get(functions[x_field]).includes(id)) {
+        if (neededArguments.get(functions[xField]).includes(id)) {
             $(this).show();
         } else {
             if ($(this).prop('tagName') === 'DIV') $(this).hide();
@@ -153,8 +155,10 @@ calcButton.on('click', function (): void {
     }
 
     argumentos = entradas.map(x => Number(x));
+    console.log(argumentos);
+    console.log(neededArguments.get(functions[xField]))
 
-    functions[x_field](...argumentos);
+    functions[xField](...argumentos);
 
     window.location.assign('resultado.html');
 });
