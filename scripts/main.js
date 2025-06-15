@@ -13,9 +13,9 @@ const fields = {
 const needed_fields = {
     'g': ['delta_h', 'v0', 't'],
     'v0': ['delta_h', 'g', 't'],
-    'delta_h': ['h0', 'hf'],
-    'hf': ['h0', 'g', 't'],
-    'h0': ['v0', 'g', 't'],
+    'delta_h': ['g', 't', 'v0'],
+    'hf': ['h0', 'g', 't', 'v0'],
+    'h0': ['v0', 't', 'g', 'hf'],
     'vf': ['v0', 'g'],
     't': ['h0', 'v0', 'g'],
 };
@@ -40,22 +40,21 @@ const grandezas = {
 }
 
 //funções
-function calc_hf(h0, g, t) {
-    return h0 - 0.5 * g * t * t;
-}
+function calc_hf(h0, g, t, v0) {
+    return h0 + v0 * t - 0.5 * g * t * t;
+} //corrigida
 
-function calc_h0(v0, t, g) {
-    return v0 * t - 0.5 * g * t * t;
-    // h0 = h - v0*t + 0.5*g*t*t
-}
+function calc_h0(v0, t, g, hf) {
+    return hf - v0 * t + g * t * t;
+} //corrigida
 
-function calc_delta_h(h0, hf) {
-    return Math.abs(hf - h0);
-}
+function calc_delta_h(g, t, v0) {
+    return g * t * t - v0 * t;
+} //corrigida
 
 function calc_g(delta_h, v0, t) {
-    return 2 * (delta_h - v0 * t) / Math.pow(t, 2);
-}
+    return (delta_h + v0 * t) / (t * t);
+} //corrigida
 
 function calc_t(h0, v0, g) {
     const a = -0.5 * g;
@@ -72,15 +71,15 @@ function calc_t(h0, v0, g) {
         t = -b / 2 * a;
     } else {
         let t1, t2;
-        t1 = (-b + Math.sqrt(delta)) / 2*a;
-        t2 = (-b - Math.sqrt(delta)) / 2*a;
+        t1 = (-b + Math.sqrt(delta)) / (2 * a);
+        t2 = (-b - Math.sqrt(delta)) / (2 * a);
         t = Math.max(t1, t2);
     }
     return t >= 0 ? t : "Nenhuma solução com t >= 0 encontrada";
-}
+} //corrigida
 
 function calc_v0(delta_h, g, t) {
-    return (g * t * t - 2 * delta_h) / -2 * t;
+    return (2 * delta_h + g * t * t) / (2 * t);
 }
 
 function calc_vf(v0, g, delta_h) {
