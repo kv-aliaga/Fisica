@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <meta http-equiv="refresh" content="993">
-    <script src="libs/jquery.min.js"></script>
-    <script src="scripts/main.js" defer></script>
+    <script src="./libs/jquery.min.js"></script>
+    <script type="module" src="./dist/main.js" defer></script>
+
     <title>Calculadora</title>
 </head>
 
@@ -16,7 +16,7 @@
 
         <nav>
             <ul>
-                <li><a onclick="window.location.assign('index.html')">Início</a></li>
+                <li><a href="#">Início</a></li>
                 <li><a href="https://www.todamateria.com.br/queda-livre/" target="_blank" type="external">Saiba Mais</a></li>
             </ul>
         </nav>
@@ -58,11 +58,6 @@
                 <div id="velocidadeFinal">
                     <label for="vf">Velocidade Final [vf] (s):</label>
                     <input id="vf" type="number">
-                </div>
-
-                <div id="variacao">
-                    <label for="delta_h">Variação [&Delta;h] (m):</label>
-                    <input id="delta_h" type="number">
                 </div>
 
                 <div id="aceleracao">

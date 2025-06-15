@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "lib": ["es2019", "dom"],
+    "allowSyntheticDefaultImports": true,
+    "module": "esnext",
+    "outDir": "./dist/"
+  },
+  "include": [
+    "./src/*.ts"
+  ]
+}
