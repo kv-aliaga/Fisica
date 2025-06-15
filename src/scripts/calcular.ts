@@ -4,6 +4,13 @@ import $ from "jquery";
 type Funcao = (...args: any[]) => any;
 
 //funções
+function esconderTudo(): void {
+    $('#perguntas').children().each(function (): void {
+        $(this).hide();
+        $(this).find('select, input').val(null);
+    });
+}
+
 const toChar: (x: number) => string = x => x.toLocaleString('pt-BR', {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
@@ -12,7 +19,7 @@ const toChar: (x: number) => string = x => x.toLocaleString('pt-BR', {
 function calcT(h0: number, hf: number, v0: number, g: number): void {
     const a: number = -0.5 * g;
     const b: number = v0;
-    const c: number = h0;
+    const c: number = h0 - hf;
 
     const delta: number = b * b - 4 * a * c;
     let t: number;
@@ -42,22 +49,22 @@ function calcVf(v0: number, g: number, t: number): void {
 }
 
 function calcV0(h0: number, hf: number, g: number, t: number): void {
-    const v0: number = (hf - h0 + 0.5 * g * t * t);
+    const v0: number = (hf - h0 + 0.5 * g * t * t) / t;
     localStorage.setItem('result', `v<sub>i</sub> = ${toChar(v0)}m/s`);
 }
 
 function calcHf(h0: number, v0: number, g: number, t: number): void {
-    const hf: number = h0 + v0 * t - g * t * t;
+    const hf: number = h0 + v0 * t - 0.5 * g * t * t;
     localStorage.setItem('result', `h<sub>f</sub> = ${toChar(hf)}m`);
 }
 
 function calcH0(hf: number, v0: number, g: number, t: number): void {
-    const h0: number = hf - v0 * t + g * t * t;
+    const h0: number = hf - v0 * t + 0.5 * g * t * t;
     localStorage.setItem('result', `h<sub>i</sub> = ${toChar(h0)}m`);
 }
 
 function calcDh(v0: number, g: number, t: number): void {
-    const dh: number = v0 * t - g * t * t;
+    const dh: number = v0 * t - 0.5 * g * t * t;
     localStorage.setItem('result', `\u0394h = ${toChar(dh)}m`);
 }
 
@@ -71,6 +78,11 @@ function calcTmax(v0: number, g: number): void {
     localStorage.setItem('result', `t<sub>max</sub> = ${toChar(tmax)}s`);
 }
 
+function calcG(h0: number, hf: number, v0: number, t: number): void {
+    const g: number = (2 * (v0 * t - (hf - h0))) / (t * t);
+    localStorage.setItem('result', `g = ${toChar(g)}m/s<sup>2</sup>`);
+}
+
 //dicionários e constantes jQuery
 const functions: { [key: string]: Funcao } = {
     t: calcT,
@@ -80,7 +92,8 @@ const functions: { [key: string]: Funcao } = {
     h0: calcH0,
     dh: calcDh,
     hmax: calcHmax,
-    tmax: calcTmax
+    tmax: calcTmax,
+    g: calcG,
 };
 
 const needed_arguments = new Map<Funcao, string[]>([
@@ -91,27 +104,57 @@ const needed_arguments = new Map<Funcao, string[]>([
     [calcH0, ['hf', 'v0', 'g', 't']],
     [calcDh, ['v0', 'g', 't']],
     [calcHmax, ['h0', 'v0', 'g']],
-    [calcTmax, ['v0', 'g']]
+    [calcTmax, ['v0', 'g']],
+    [calcG, ['h0', 'hf', 'v0', 't']],
 ]);
 
 const fields: { [key: string]: JQuery } = Object.fromEntries(
     ['h0', 'hf', 'v0', 'vf', 'g', 'f'].map(x => [x, $(`#${x}`)])
 );
 
+const calcButton: JQuery = $('#calcular');
+
 //preparação inicial da lading page
-$('#perguntas').children().each(function(): void {$(this).hide()});
+localStorage.removeItem('result');
+esconderTudo();
 
 //event listeners
+let x_field: string;
 $('#incognita').on('change', function (): void {
-    const x_field: string = $(this).val() as string;
-    let argumentos: number[];
+    x_field = $(this).val() as string;
+    if (x_field === '') {
+        esconderTudo();
+        return;
+    }
+    calcButton.show();
 
     $('#perguntas').children().each(function (): void {
         const id: string = $(this).find('input, select').attr('id');
+        $(this).find('input, select').val(null);
         if (needed_arguments.get(functions[x_field]).includes(id)) {
             $(this).show();
         } else {
-            $(this).hide();
+            if ($(this).prop('tagName') === 'DIV') $(this).hide();
         }
     });
+});
+
+calcButton.on('click', function (): void {
+    let entradas: string[] = [];
+    let argumentos: number[] = [];
+
+    $('#perguntas').children().find('input, select').each(function (): void {
+        if (!$(this).is(':hidden')) entradas.push($(this).val() as string);
+    });
+
+    if (entradas.includes('')) {
+        alert('Preencha todos os campos primeiro');
+        return;
+    }
+
+    argumentos = entradas.map(x => Number(x));
+
+    functions[x_field](...argumentos);
+
+    window.location.assign('resultado.html');
 });
