@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <meta http-equiv="refresh" content="993">
-    <script src="libs/jquery.min.js"></script>
-    <script src="scripts/main.js" defer></script>
+    <script type="module" src="/src/main.js" defer></script>
+
     <title>Calculadora</title>
 </head>
 
@@ -16,7 +14,7 @@
 
         <nav>
             <ul>
-                <li><a onclick="window.location.assign('index.html')">Início</a></li>
+                <li><a href="#">Início</a></li>
                 <li><a href="https://www.todamateria.com.br/queda-livre/" target="_blank" type="external">Saiba Mais</a></li>
             </ul>
         </nav>
@@ -25,7 +23,7 @@
     <main>
         <section>
             <div id="variaveis">
-                <label id="valor" for="incognita">Selecione o valor a ser calculado: </label>
+                <label id="valor" for="incognita">Selecione a grandeza a ser calculada: </label>
 
                 <select id="incognita">
                     <option value="">Selecione</option>
@@ -33,36 +31,33 @@
                     <option value="hf">Altura Final [hf] (m)</option>
                     <option value="v0">Velocidade Inicial [v0] (s)</option>
                     <option value="vf">Velocidade Final [vf] (s)</option>
-                    <option value="delta_h">Variação de Altura [&Delta;h] (m)</option>
+                    <option value="dh">Variação de Altura [&Delta;h] (m)</option>
                     <option value="g">Aceleração da Gravidade [g] (m/s²)</option>
                     <option value="t">Tempo [t] (s)</option>
+                    <option value="hmax">Altura Máxima [hmax] (m)</option>
+                    <option value="tmax">Tempo até a altura máxima [tmax] (s)</option>
                 </select>
             </div>
 
             <div id="perguntas">
                 <div id="alturaInicial">
-                    <label for="h0">Altura Inicial [h0] (m):</label>
+                    <label for="h0">Altura Inicial [h<sub>0</sub>] (m):</label>
                     <input id="h0" type="number">
                 </div>
 
                 <div id="alturaFinal">
-                    <label for="hf">Altura Final [hf] (m):</label>
+                    <label for="hf">Altura Final [h<sub>f</sub>] (m):</label>
                     <input id="hf" type="number">
                 </div>
 
                 <div id="velocidadeInicial">
-                    <label for="v0">Velocidade Inicial [v0] (s):</label>
+                    <label for="v0">Velocidade Inicial [v<sub>0</sub>] (s):</label>
                     <input id="v0" type="number">
                 </div>
 
                 <div id="velocidadeFinal">
-                    <label for="vf">Velocidade Final [vf] (s):</label>
+                    <label for="vf">Velocidade Final [v<sub>f</sub>] (s):</label>
                     <input id="vf" type="number">
-                </div>
-
-                <div id="variacao">
-                    <label for="delta_h">Variação [&Delta;h] (m):</label>
-                    <input id="delta_h" type="number">
                 </div>
 
                 <div id="aceleracao">
@@ -85,8 +80,6 @@
                 </div>
 
                 <button id="calcular">Calcular</button>
-
-                <h3 id="resultado"></h3>
             </div>
         </section>
     </main>
