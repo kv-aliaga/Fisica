@@ -67,7 +67,7 @@ function calcHmax(h0: number, v0: number, g: number): void {
 }
 
 function calcTmax(v0: number, g: number): void {
-    const tmax: number = v0/g;
+    const tmax: number = v0 / g;
     localStorage.setItem('result', `t<sub>max</sub> = ${toChar(tmax)}s`);
 }
 
@@ -94,22 +94,24 @@ const needed_arguments = new Map<Funcao, string[]>([
     [calcTmax, ['v0', 'g']]
 ]);
 
-const fieds: { [key: string]: JQuery} = Object.fromEntries(
+const fields: { [key: string]: JQuery } = Object.fromEntries(
     ['h0', 'hf', 'v0', 'vf', 'g', 'f'].map(x => [x, $(`#${x}`)])
 );
 
+//preparação inicial da lading page
+$('#perguntas').children().each(function(): void {$(this).hide()});
+
 //event listeners
-$('#incognita').on('change', function(): void {
+$('#incognita').on('change', function (): void {
     const x_field: string = $(this).val() as string;
     let argumentos: number[];
 
-    $('#perguntas').children().each(function(): void {
-       if ($(this).prop('id') in Object.keys(functions)) {
-           $(this).show();
-       } else {
-           $(this).hide();
-       }
+    $('#perguntas').children().each(function (): void {
+        const id: string = $(this).find('input, select').attr('id');
+        if (needed_arguments.get(functions[x_field]).includes(id)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
     });
 });
-
-$('body').css('color', 'blue');
