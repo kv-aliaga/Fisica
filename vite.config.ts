@@ -9,5 +9,6 @@ export default defineConfig({
                 resultado: path.resolve(__dirname, 'resultado.html'),
             },
         },
+        outDir: 'docs',
     },
 })
